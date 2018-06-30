@@ -11,10 +11,17 @@
 (defun make-progress-bar (total)
   (if (or (not total) (zerop total))
       (make-instance 'cl-progress-bar.progress:uncertain-size-progress-bar)
-      (make-instance 'cl-progress-bar.progress:progress-bar :total total)))
+      (make-instance 'cl-progress-bar.progress:progress-bar
+                     :total total)))
 
-(defmacro with-progress-bar ((total-size) &body body)
+(defmacro with-progress-bar ((total-size description &rest desc-args) &body body)
   `(let ((*progress-bar* (when (and (not *progress-bar*)
                                     *progress-bar-enabled*)
                            (make-progress-bar ,total-size))))
-     ,@body))
+     (when *progress-bar*
+       (fresh-line)
+       (format t ,description ,@desc-args)
+       (cl-progress-bar.progress:start-display *progress-bar*))
+     (prog1 (progn ,@body)
+       (when *progress-bar*
+         (cl-progress-bar.progress:finish-display *progress-bar*)))))

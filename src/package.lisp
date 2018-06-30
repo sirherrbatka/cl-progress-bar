@@ -14,6 +14,8 @@
   (:use #:common-lisp)
   (:export
    #:progress-bar
+   #:start-display
+   #:finish-display
    #:mutex
    #:uncertain-size-progress-bar
    #:update-progress))

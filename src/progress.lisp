@@ -87,14 +87,28 @@
              (- now (last-update-time progress-bar)))
       (update-display progress-bar))))
 
+(defconstant +seconds-in-one-hour+ 360)
+(defconstant +seconds-in-one-minute+ 60)
+
+(defun time-in-seconds-minutes-hours (in-seconds)
+  (format t "Finished in")
+  (when (>= in-seconds +seconds-in-one-hour+)
+    (let* ((hours (floor (/ in-seconds +seconds-in-one-hour+))))
+      (decf in-seconds (* hours +seconds-in-one-hour+))
+      (format t " ~a hour~p" hours hours)))
+  (when (>= in-seconds +seconds-in-one-minute+)
+    (let* ((minutes (floor (/ in-seconds +seconds-in-one-minute+))))
+      (decf in-seconds (* minutes +seconds-in-one-minute+))
+      (format t " ~a minute~p" minutes minutes)))
+  (unless (zerop in-seconds)
+    (format t " ~$ seconds" in-seconds)))
+
+
 (defmethod finish-display (progress-bar)
   (update-display progress-bar)
   (setf (end-time progress-bar) (get-internal-real-time))
   (terpri)
-  (format t "~:D bytes in ~$ seconds (~$KB/sec)~%"
-          (total progress-bar)
-          (elapsed-time progress-bar)
-          (/  (units-per-second progress-bar) 1024))
+  (time-in-seconds-minutes-hours (elapsed-time progress-bar))
   (finish-output))
 
 (defmethod elapsed-time (progress-bar)
