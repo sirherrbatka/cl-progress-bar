@@ -27,5 +27,7 @@ Finished in 5.00 seconds
 The progress bar itself is composed from equal bars and will grow gradually.
 
 Full blown example can be seen in cl-data-structures
+
 Establishing progress bar: https://github.com/sirherrbatka/cl-data-structures/blob/2b3d8489819b18a1f914777fe1d13da7a72223c2/src/utils/clustering/external-functions.lisp#L71
+
 Updating progress bar: https://github.com/sirherrbatka/cl-data-structures/blob/2b3d8489819b18a1f914777fe1d13da7a72223c2/src/utils/clustering/internal-functions.lisp#L355
