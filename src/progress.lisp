@@ -1,6 +1,5 @@
 (in-package #:cl-progress-bar.progress)
 
-
 (defclass progress-bar ()
   ((start-time
     :initarg :start-time
@@ -102,7 +101,6 @@
       (format t " ~a minute~p" minutes minutes)))
   (unless (zerop in-seconds)
     (format t " ~$ seconds" in-seconds)))
-
 
 (defmethod finish-display (progress-bar)
   (update-display progress-bar)
