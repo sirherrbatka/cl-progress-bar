@@ -3,7 +3,7 @@
 (defvar *progress-bar* nil)
 (defparameter *progress-bar-enabled* nil)
 
-(defun update-progress (unit-count &optional (progress-bar *progress-bar*))
+(defun update (unit-count &optional (progress-bar *progress-bar*))
   (unless (null progress-bar)
     (bt:with-lock-held ((cl-progress-bar.progress:mutex progress-bar))
       (cl-progress-bar.progress:update-progress progress-bar unit-count))))

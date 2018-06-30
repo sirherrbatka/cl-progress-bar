@@ -4,7 +4,7 @@
 (defpackage :cl-progress-bar
   (:use #:common-lisp)
   (:export
-   #:update-progress
+   #:update
    #:with-progress-bar
    #:*progress-bar*
    #:*progress-bar-enabled*))

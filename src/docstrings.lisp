@@ -16,8 +16,8 @@
                             (desc-args "Arguments to FORMAT, should be compatible with description formula."))
      :notes "Because with-progress-bar handles cases where another progress-bar is active it is generally safe to nest code with this macro on call stack. However, top level with-progress-bar should contain correct steps-count."))
 
-  (function update-progress
+  (function update
     (:description "Notify progress bar about step completion."
      :arguments-and-values ((unit-count "How many steps has been finished?")
-                            (progress-bra "Instance of progress-bar. Usually should be left with default (namely: *progress-bar*)."))
+                            (progress-bar "Instance of progress-bar. Usually should be left with default (namely: *progress-bar*)."))
      :thread-safety "This function is thread safe.")))
