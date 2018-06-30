@@ -14,14 +14,16 @@
       (make-instance 'cl-progress-bar.progress:progress-bar
                      :total total)))
 
-(defmacro with-progress-bar ((total-size description &rest desc-args) &body body)
-  `(let ((*progress-bar* (when (and (not *progress-bar*)
-                                    *progress-bar-enabled*)
-                           (make-progress-bar ,total-size))))
-     (when *progress-bar*
-       (fresh-line)
-       (format t ,description ,@desc-args)
-       (cl-progress-bar.progress:start-display *progress-bar*))
-     (prog1 (progn ,@body)
-       (when *progress-bar*
-         (cl-progress-bar.progress:finish-display *progress-bar*)))))
+(defmacro with-progress-bar ((steps-count description &rest desc-args) &body body)
+  (let ((!old-bar (gensym)))
+    `(let* ((,!old-bar *progress-bar*)
+            (*progress-bar* (or ,!old-bar
+                                (when *progress-bar-enabled*
+                                  (make-progress-bar ,steps-count)))))
+       (unless (eq ,!old-bar *progress-bar*)
+         (fresh-line)
+         (format t ,description ,@desc-args)
+         (cl-progress-bar.progress:start-display *progress-bar*))
+       (prog1 (progn ,@body)
+         (unless (eq ,!old-bar *progress-bar*)
+           (cl-progress-bar.progress:finish-display *progress-bar*))))))
