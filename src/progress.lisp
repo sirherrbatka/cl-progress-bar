@@ -107,7 +107,11 @@
   (setf (end-time progress-bar) (get-internal-real-time))
   (terpri)
   (time-in-seconds-minutes-hours (elapsed-time progress-bar))
-  (finish-output))
+  (finish-output)
+  (unless (= (progress progress-bar) (total progress-bar))
+    (warn "Expected TOTAL is ~a but progress at the moment of finishing is ~a"
+          (total progress-bar)
+          (progress progress-bar))))
 
 (defmethod elapsed-time (progress-bar)
   (/ (- (end-time progress-bar) (start-time progress-bar))
