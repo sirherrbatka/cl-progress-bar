@@ -12,7 +12,7 @@
       (cl-progress-bar.progress:update-progress progress-bar unit-count))))
 
 (defun make-progress-bar (total)
-  (check-type total (or null (integer 1 *)))
+  (check-type total (or null (integer 0 *)))
   (if (or (not total) (zerop total))
       (make-instance 'cl-progress-bar.progress:uncertain-size-progress-bar)
       (make-instance 'cl-progress-bar.progress:progress-bar
