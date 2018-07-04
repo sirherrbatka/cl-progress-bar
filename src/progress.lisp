@@ -87,7 +87,7 @@
              (- now (last-update-time progress-bar)))
       (update-display progress-bar))))
 
-(defconstant +seconds-in-one-hour+ 360)
+(defconstant +seconds-in-one-hour+ 3600)
 (defconstant +seconds-in-one-minute+ 60)
 
 (defun time-in-seconds-minutes-hours (in-seconds)
