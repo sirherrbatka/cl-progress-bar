@@ -9,6 +9,7 @@
   :depends-on (:bordeaux-threads :documentation-utils-extensions)
   :defsystem-depends-on (:prove-asdf)
   :serial T
+  :description "Display progress bars directly in REPL."
   :pathname "src"
   :components ((:file "package")
                (:file "progress")
