@@ -5,7 +5,7 @@ Progress bars, just like in quicklisp!
 This library provides almost the same code as used inside quicklisp for drawning progress bars. Differences includeare:
 * Different API.
 * Thread safety.
-* Does not assume that progress bar are releated representing download progress. Finish message contains just formatted duration.
+* Does not assume that progress bar are representing download progress. Finish message contains just formatted duration.
 
 # Examples
 Basic exapmle looks like this:
@@ -31,3 +31,6 @@ Full blown example can be seen in cl-data-structures
 Establishing progress bar: https://github.com/sirherrbatka/cl-data-structures/blob/2b3d8489819b18a1f914777fe1d13da7a72223c2/src/utils/clustering/external-functions.lisp#L71
 
 Updating progress bar: https://github.com/sirherrbatka/cl-data-structures/blob/2b3d8489819b18a1f914777fe1d13da7a72223c2/src/utils/clustering/internal-functions.lisp#L355
+
+# Threads
+Because progress bar instance is bound as special variable, in cases where call to update happens on different thread then establishing progress-bar you should establish bindings to the cl-progress-bar:*progress-bar* yourself.
