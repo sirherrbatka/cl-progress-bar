@@ -16,7 +16,7 @@ Basic exapmle looks like this:
 
 (setf cl-progress-bar:*progress-bar-enabled* t) ; nil by default, must be t to actually display anything.
 (cl-progress-bar:with-progress-bar (5 "This is just a example. Number of steps is ~a." 5)
-  (dotimes (i 5) (perform-step 1)))
+  (dotimes (i 5) (perform-step)))
 ```
 The above should print the following message after executing.
 ```
