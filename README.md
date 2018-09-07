@@ -33,4 +33,4 @@ Establishing progress bar: https://github.com/sirherrbatka/cl-data-structures/bl
 Updating progress bar: https://github.com/sirherrbatka/cl-data-structures/blob/2b3d8489819b18a1f914777fe1d13da7a72223c2/src/utils/clustering/internal-functions.lisp#L355
 
 # Threads
-Because progress bar instance is bound as special variable, in cases where call to update happens on different thread then establishing progress-bar you should establish bindings to the cl-progress-bar:*progress-bar* yourself.
+Because progress bar instance is bound as special variable, in cases where call to update happens on different thread then establishing progress-bar you should establish bindings to the `cl-progress-bar:*progress-bar*` yourself.
