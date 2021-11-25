@@ -101,7 +101,8 @@
       (decf in-seconds (* minutes +seconds-in-one-minute+))
       (format t " ~a minute~p" minutes minutes)))
   (unless (zerop in-seconds)
-    (format t " ~$ seconds" in-seconds)))
+    (format t " ~$ seconds" in-seconds))
+  (terpri))
 
 (defmethod finish-display (progress-bar)
   (update-display progress-bar)
